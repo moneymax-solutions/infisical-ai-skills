@@ -25,4 +25,4 @@ long = []
 for f in sorted(glob.glob("plugins/*/skills/*/SKILL.md")):
     m = re.search(r'^description: "(.*)"$', open(f).read(), re.M)
     if m and len(m.group(1)) > 1024: long.append((len(m.group(1)), f))
-print("descriptions over 1024:", *(f"\n  {n}  {f}" for n, f in long) if long else " none")
+print("descriptions over 1024:", "".join(f"\n  {n}  {f}" for n, f in long) or "none")
